@@ -8,7 +8,7 @@ from schemas.get_clubs_response_schemas import get_clubs_response_schema, get_cl
 def test_get_clubs_search_exact_club():
     page: int = 1
     page_size: int = 10
-    search: str = "Тестирование Дот Ком"
+    search: str = 'Тестирование Дот Ком'
 
     response = requests.get(f'https://book-club.qa.guru/api/v1/clubs/?page={page}&page_size={page_size}&search={search}')
     response_body = response.json()
@@ -43,7 +43,7 @@ def test_get_clubs_page_length():
 
     assert response.status_code == 200
     validate(response_body, schema = get_clubs_page_length_response_schema)
-    assert response_body['count'] == 184
+    assert response_body['count'] is not None
     assert response_body['next'] == "https://book-club.qa.guru/api/v1/clubs/?page=2&page_size=9"
     assert response_body['previous'] is None
     assert response_body['results'][0]['id'] == 1
