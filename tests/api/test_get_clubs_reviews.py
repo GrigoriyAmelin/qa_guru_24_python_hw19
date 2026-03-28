@@ -86,5 +86,3 @@ def test_get_clubs_reviews_search_unexisting_review():
     assert response_body['next'] is None
     assert response_body['previous'] is None
     assert results_count == 0
-
-

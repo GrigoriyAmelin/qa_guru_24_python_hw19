@@ -67,5 +67,3 @@ def test_get_clubs_unexisting_page():
     assert response_body['detail'] == 'Invalid page.'
     assert 'next' not in response_body
     assert 'previous' not in response_body
-
-

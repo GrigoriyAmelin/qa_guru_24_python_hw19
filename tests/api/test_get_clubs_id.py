@@ -38,4 +38,4 @@ def test_get_clubs_id_search_unexisting_club():
 
     assert response.status_code == 404
     validate(response_body, schema = get_clubs_id_unexisting_club_response_schema)
-    assert response_body['detail'] == "No Club matches the given query."
+    assert response_body['detail'] == 'No Club matches the given query.'
