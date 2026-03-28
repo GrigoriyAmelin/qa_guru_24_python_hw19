@@ -1,7 +1,7 @@
 import requests
 from jsonschema import validate
 
-from schemas.response_schemas import get_clubs_response_schema, get_clubs_page_length_response_schema, \
+from schemas.get_clubs_response_schemas import get_clubs_response_schema, get_clubs_page_length_response_schema, \
     get_clubs_unexisting_page_response_schema
 
 
@@ -43,7 +43,7 @@ def test_get_clubs_page_length():
 
     assert response.status_code == 200
     validate(response_body, schema = get_clubs_page_length_response_schema)
-    assert response_body['count'] == 182
+    assert response_body['count'] == 184
     assert response_body['next'] == "https://book-club.qa.guru/api/v1/clubs/?page=2&page_size=9"
     assert response_body['previous'] is None
     assert response_body['results'][0]['id'] == 1
@@ -52,8 +52,8 @@ def test_get_clubs_page_length():
 
 
 def test_get_clubs_unexisting_page():
-    page: int = 183
-    page_size: int = 1
+    page: int = 185
+    page_size: int = 100
 
     response = requests.get(f'https://book-club.qa.guru/api/v1/clubs/?page={page}&page_size={page_size}')
     response_body = response.json()
