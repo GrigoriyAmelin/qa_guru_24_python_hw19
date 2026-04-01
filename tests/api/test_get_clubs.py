@@ -10,7 +10,10 @@ def test_get_clubs_search_exact_club():
     page_size: int = 10
     search: str = 'Тестирование Дот Ком'
 
-    response = requests.get(f'https://book-club.qa.guru/api/v1/clubs/?page={page}&page_size={page_size}&search={search}')
+    params = {'page': page, 'page_size': page_size, 'search': search}
+    request_url = 'https://book-club.qa.guru/api/v1/clubs/'
+
+    response = requests.get(f'{request_url}', params=params)
     response_body = response.json()
 
     print(f'\nStatus code: {response.status_code}')
@@ -32,7 +35,10 @@ def test_get_clubs_page_length():
     page: int = 1
     page_size: int = 9
 
-    response = requests.get(f'https://book-club.qa.guru/api/v1/clubs/?page={page}&page_size={page_size}')
+    params = {'page': page, 'page_size': page_size}
+    request_url = 'https://book-club.qa.guru/api/v1/clubs/'
+
+    response = requests.get(f'{request_url}', params=params)
     response_body = response.json()
     results_count = len(response_body['results'])
 
@@ -55,7 +61,10 @@ def test_get_clubs_unexisting_page():
     page: int = 185
     page_size: int = 100
 
-    response = requests.get(f'https://book-club.qa.guru/api/v1/clubs/?page={page}&page_size={page_size}')
+    params = {'page': page, 'page_size': page_size}
+    request_url = 'https://book-club.qa.guru/api/v1/clubs/'
+
+    response = requests.get(f'{request_url}', params=params)
     response_body = response.json()
 
     print(f'\nStatus code: {response.status_code}')

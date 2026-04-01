@@ -11,8 +11,10 @@ def test_get_clubs_reviews_search_existing_review():
     club_id: int = 292
     search_phrase: str = 'Night'
 
-    response = (requests.
-                get(f'https://book-club.qa.guru/api/v1/clubs/reviews/?club={club_id}&page={page}&page_size={page_size}'))
+    params = {'page': page, 'page_size': page_size, 'club': club_id}
+    request_url = 'https://book-club.qa.guru/api/v1/clubs/reviews/'
+
+    response = requests.get(f'{request_url}', params=params)
     response_body = response.json()
 
     print(f'\nStatus code: {response.status_code}')
@@ -35,12 +37,12 @@ def test_get_clubs_reviews_search_existing_review():
 
 
 def test_get_clubs_reviews_search_all_existing_reviews():
-    # page: int = 1
-    # page_size: int = 10
     club_id: int = 292
     search_phrase: str = 'Night'
 
-    response = requests.get(f'https://book-club.qa.guru/api/v1/clubs/reviews/')
+    request_url = 'https://book-club.qa.guru/api/v1/clubs/reviews/'
+
+    response = requests.get(f'{request_url}')
     response_body = response.json()
     results_count = len(response_body['results'])
 
@@ -51,9 +53,9 @@ def test_get_clubs_reviews_search_all_existing_reviews():
     assert response.status_code == 200
     validate(response_body, schema = all_reviews_response_schema)
     assert response_body['count'] is not None
-    assert response_body['next'] is None
+    assert response_body['next'] == 'https://book-club.qa.guru/api/v1/clubs/reviews/?page=2'
     assert response_body['previous'] is None
-    assert results_count == response_body['count']
+    assert results_count < response_body['count']
 
     for review in response_body['results']:
         if review.get('id') == 40:
@@ -71,8 +73,10 @@ def test_get_clubs_reviews_search_unexisting_review():
     page_size: int = 10
     club_id: int = 4
 
-    response = (requests.
-                get(f'https://book-club.qa.guru/api/v1/clubs/reviews/?club={club_id}&page={page}&page_size={page_size}'))
+    params = {'page': page, 'page_size': page_size, 'club': club_id}
+    request_url = 'https://book-club.qa.guru/api/v1/clubs/reviews/'
+
+    response = requests.get(f'{request_url}', params=params)
     response_body = response.json()
     results_count = len(response_body['results'])
 

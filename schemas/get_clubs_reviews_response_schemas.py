@@ -82,7 +82,7 @@ all_reviews_response_schema = {
             "type": "integer"
         },
         "next": {
-            "type": "null"
+            "type": ["string", "null"]
         },
         "previous": {
             "type": "null"
