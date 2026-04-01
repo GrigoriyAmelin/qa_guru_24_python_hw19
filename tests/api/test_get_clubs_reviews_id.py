@@ -1,7 +1,10 @@
 import requests
 from jsonschema import validate
 
-from schemas.get_clubs_reviews_id_response_schemas import response_schema, unexisting_review_response_schema
+from schemas.get_clubs_reviews_id_response_schemas import (
+    response_schema,
+    unexisting_review_response_schema
+)
 
 
 def test_get_clubs_reviews_id_search_exact_review():
