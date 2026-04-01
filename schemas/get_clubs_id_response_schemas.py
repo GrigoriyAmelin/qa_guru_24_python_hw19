@@ -1,0 +1,74 @@
+get_clubs_id_response_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Generated Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "bookTitle": {
+            "type": "string"
+        },
+        "bookAuthors": {
+            "type": "string"
+        },
+        "publicationYear": {
+            "type": "integer"
+        },
+        "description": {
+            "type": "string"
+        },
+        "telegramChatLink": {
+            "type": "string",
+            "format": "uri"
+        },
+        "owner": {
+            "type": "integer"
+        },
+        "members": {
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "reviews": {
+            "type": "array",
+            "items": {
+                "type": "object"
+            }
+        },
+        "created": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "modified": {
+            "type": "null"
+        }
+    },
+    "required": [
+        "id",
+        "bookTitle",
+        "bookAuthors",
+        "publicationYear",
+        "description",
+        "telegramChatLink",
+        "owner",
+        "members",
+        "reviews",
+        "created"
+    ]
+}
+
+get_clubs_id_unexisting_club_response_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Generated Schema",
+    "type": "object",
+    "properties": {
+        "detail": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "detail"
+    ]
+}
