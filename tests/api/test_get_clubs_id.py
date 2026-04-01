@@ -1,8 +1,10 @@
 import requests
 from jsonschema import validate
 
-from schemas.get_clubs_id_response_schemas import get_clubs_id_response_schema, \
+from schemas.get_clubs_id_response_schemas import (
+    get_clubs_id_response_schema,
     get_clubs_id_unexisting_club_response_schema
+)
 
 
 def test_get_clubs_id_search_exact_club():
